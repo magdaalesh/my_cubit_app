@@ -8,6 +8,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../core/const/sized.dart';
 
+// ignore: must_be_immutable
 class Verficationcodeview extends StatelessWidget {
   Verficationcodeview({super.key, required this.source});
   String source;

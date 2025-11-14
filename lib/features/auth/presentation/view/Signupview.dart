@@ -80,7 +80,7 @@ class Signupview extends StatelessWidget {
                   preicon: Icons.lock,
                   title: "password config",
                   suficonneed: true,
-
+                  controller: config,
                   suficon: context.read<PasswordCubit>().getIcon(
                     Passwordenum.configpass,
                   ),
