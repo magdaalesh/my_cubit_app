@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_cubit_app/core/style/appbuttonstyle.dart';
 import 'package:my_cubit_app/core/style/textstyle.dart';
 import 'package:my_cubit_app/core/widget/buttoncustom.dart';
@@ -11,6 +12,7 @@ class ForgotpasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController email = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         reverse: true,
@@ -31,13 +33,16 @@ class ForgotpasswordView extends StatelessWidget {
             Text("Enter your email to reset your password"),
             SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
             Textfilecustom(
-              paddingwidth: Sizescreen().widthtextfilesauth(context),
               preicon: Icons.email,
               title: "Email",
+              onchange: (value) {},
+              controller: email,
             ),
             SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
             Buttoncustom(
-              onpress: () {},
+              onpress: () {
+                context.goNamed('varifycode',extra: 'forgetpassword');
+              },
               title: "Verify",
               styletitlebutton: TextstyleApp().buttontexttitle,
               buttonstyle: Appbuttonstyle().authbutton(context),

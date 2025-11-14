@@ -5,7 +5,7 @@ import '../const/color.dart';
 
 class TextstyleApp {
   final TextStyle titleauth = TextStyle(
-    fontSize: 35,
+    fontSize: 40,
     color: mycolorapp,
     fontWeight: FontWeight.bold,
   );

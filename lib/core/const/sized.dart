@@ -14,6 +14,6 @@ class Sizescreen {
   }
 
   double higthbetweenelementauth(BuildContext context) {
-    return fullheight(context) / 55;
+    return fullheight(context) / 50;
   }
 }
