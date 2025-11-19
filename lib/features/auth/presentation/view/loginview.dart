@@ -9,14 +9,29 @@ import 'package:my_cubit_app/features/auth/presentation/view/manager/password_cu
 
 import '../../../../core/widget/textfilecustom.dart';
 
-class Loginview extends StatelessWidget {
+class Loginview extends StatefulWidget {
   Loginview({super.key});
+
+  @override
+  State<Loginview> createState() => _LoginviewState();
+}
+
+class _LoginviewState extends State<Loginview> {
   final _key = GlobalKey<FormState>();
+
+  TextEditingController email = TextEditingController();
+
+  TextEditingController pass = TextEditingController();
+
+  @override
+  void dispose() {
+    email.dispose();
+    pass.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-    TextEditingController pass = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -82,7 +97,9 @@ class Loginview extends StatelessWidget {
                 SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
 
                 Buttoncustom(
-                  onpress: () {},
+                  onpress: () {
+                    context.goNamed("home");
+                  },
                   title: "Login",
                   buttonstyle: Appbuttonstyle().authbutton(context),
                   styletitlebutton: TextstyleApp().buttontexttitle,

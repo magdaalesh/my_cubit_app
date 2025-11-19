@@ -16,4 +16,12 @@ class Sizescreen {
   double higthbetweenelementauth(BuildContext context) {
     return fullheight(context) / 50;
   }
+
+  double widthsittingpaddingcard(BuildContext context) {
+    return fullwidth(context) / 50;
+  }
+
+  double higthsittingpaddingcard(BuildContext context) {
+    return fullheight(context) / 220;
+  }
 }

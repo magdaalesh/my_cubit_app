@@ -8,16 +8,35 @@ import 'package:my_cubit_app/core/widget/buttoncustom.dart';
 import 'package:my_cubit_app/core/widget/textfilecustom.dart';
 import 'package:my_cubit_app/features/auth/presentation/view/manager/password_cubit.dart';
 
-class Signupview extends StatelessWidget {
-  const Signupview({super.key});
+class Signupview extends StatefulWidget {
+  Signupview({super.key});
+
+  @override
+  State<Signupview> createState() => _SignupviewState();
+}
+
+class _SignupviewState extends State<Signupview> {
+  TextEditingController email = TextEditingController();
+
+  TextEditingController pass = TextEditingController();
+
+  TextEditingController config = TextEditingController();
+
+  TextEditingController name = TextEditingController();
+
+  TextEditingController address = TextEditingController();
+  @override
+  void dispose() {
+    email.dispose();
+    pass.dispose();
+    name.dispose();
+    config.dispose();
+    address.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-    TextEditingController pass = TextEditingController();
-    TextEditingController config = TextEditingController();
-    TextEditingController name = TextEditingController();
-    TextEditingController address = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         reverse: true,

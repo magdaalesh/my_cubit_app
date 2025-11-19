@@ -59,7 +59,9 @@ class Verficationcodeview extends StatelessWidget {
               onpress: () {
                 if (source == 'forgetpassword') {
                   context.goNamed('resetpasssword');
-                } else {}
+                } else {
+                  context.goNamed("home");
+                }
               },
               title: "Verfiy",
               styletitlebutton: TextstyleApp().buttontexttitle,

@@ -8,21 +8,32 @@ import 'package:my_cubit_app/features/auth/presentation/view/manager/password_cu
 import '../../../../core/const/sized.dart';
 import '../../../../core/widget/textfilecustom.dart';
 
-class ResetpasswordView extends StatelessWidget {
-  const ResetpasswordView({super.key});
+class ResetpasswordView extends StatefulWidget {
+  ResetpasswordView({super.key});
+
+  @override
+  State<ResetpasswordView> createState() => _ResetpasswordViewState();
+}
+
+class _ResetpasswordViewState extends State<ResetpasswordView> {
+  TextEditingController pass = TextEditingController();
+
+  TextEditingController config = TextEditingController();
+  @override
+  void dispose() {
+    pass.dispose();
+    config.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController pass = TextEditingController();
-    TextEditingController config = TextEditingController();
-
     return Scaffold(
       body: SingleChildScrollView(
         reverse: true,
         padding: EdgeInsets.only(top: Sizescreen().fullheight(context) / 3),
-        child: BlocBuilder<PasswordCubit,Map<Passwordenum,bool>>(
-
-          builder: (context,State) {
+        child: BlocBuilder<PasswordCubit, Map<Passwordenum, bool>>(
+          builder: (context, State) {
             return Column(
               children: [
                 Text("Reset password", style: TextstyleApp().titleauth),
@@ -79,7 +90,7 @@ class ResetpasswordView extends StatelessWidget {
                 ),
               ],
             );
-          }
+          },
         ),
       ),
     );

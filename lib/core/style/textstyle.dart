@@ -19,4 +19,11 @@ class TextstyleApp {
     fontWeight: FontWeight.bold,
     fontSize: 28,
   );
+  TextStyle subtitle = TextStyle(fontWeight: FontWeight.w700);
+  TextStyle sictiontitle = TextStyle(
+    color: mycolorapp,
+    fontSize: 20,
+    fontWeight: FontWeight.w800,
+  );
+  TextStyle appbar = TextStyle(fontSize: 23, fontWeight: FontWeight.w700);
 }

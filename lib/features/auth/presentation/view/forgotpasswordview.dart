@@ -7,12 +7,23 @@ import 'package:my_cubit_app/core/widget/textfilecustom.dart';
 
 import '../../../../core/const/sized.dart';
 
-class ForgotpasswordView extends StatelessWidget {
+class ForgotpasswordView extends StatefulWidget {
   const ForgotpasswordView({super.key});
 
   @override
+  State<ForgotpasswordView> createState() => _ForgotpasswordViewState();
+}
+
+class _ForgotpasswordViewState extends State<ForgotpasswordView> {
+  TextEditingController email = TextEditingController();
+  @override
+  void dispose() {
+    email.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         reverse: true,
@@ -41,7 +52,8 @@ class ForgotpasswordView extends StatelessWidget {
             SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
             Buttoncustom(
               onpress: () {
-                context.goNamed('varifycode',extra: 'forgetpassword');
+                context.goNamed('varifycode', extra: 'forgetpassword');
+             
               },
               title: "Verify",
               styletitlebutton: TextstyleApp().buttontexttitle,
