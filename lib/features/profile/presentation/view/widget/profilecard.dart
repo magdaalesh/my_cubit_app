@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_cubit_app/core/const/sized.dart';
-import 'package:my_cubit_app/core/style/textstyle.dart';
+import '/core/const/sized.dart';
+import '/core/style/textstyle.dart';
 
 class Profilecard extends StatelessWidget {
   Profilecard({

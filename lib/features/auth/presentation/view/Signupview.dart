@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_cubit_app/core/const/sized.dart';
-import 'package:my_cubit_app/core/style/appbuttonstyle.dart';
-import 'package:my_cubit_app/core/style/textstyle.dart';
-import 'package:my_cubit_app/core/widget/buttoncustom.dart';
-import 'package:my_cubit_app/core/widget/textfilecustom.dart';
-import 'package:my_cubit_app/features/auth/presentation/view/manager/password_cubit.dart';
+import '/core/const/sized.dart';
+import '/core/style/appbuttonstyle.dart';
+import '/core/style/textstyle.dart';
+import '/core/widget/buttoncustom.dart';
+import '/core/widget/textfilecustom.dart';
 
 class Signupview extends StatefulWidget {
   Signupview({super.key});
@@ -25,6 +24,7 @@ class _SignupviewState extends State<Signupview> {
   TextEditingController name = TextEditingController();
 
   TextEditingController address = TextEditingController();
+  bool passvisible = true , configvisible = true ;
   @override
   void dispose() {
     email.dispose();
@@ -68,52 +68,46 @@ class _SignupviewState extends State<Signupview> {
             ),
 
             SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
-            BlocBuilder<PasswordCubit, Map<Passwordenum, bool>>(
-              builder: (context, state) {
-                return Textfilecustom(
+             Textfilecustom(
                   onchange: (value) {},
                   controller: pass,
                   preicon: Icons.lock,
                   title: "password",
 
                   suficonneed: true,
-                  suficon: context.read<PasswordCubit>().getIcon(
-                    Passwordenum.signuppass,
-                  ),
+                  suficon: passvisible != true
+                      ? Icons.visibility
+                      : Icons.visibility_off
+,
+                 
                   onpress: () {
-                    context.read<PasswordCubit>().changeVisibility(
-                      Passwordenum.signuppass,
-                    );
+                    setState(() {
+                      passvisible = ! passvisible;
+                    });
                   },
-                  visibil: BlocProvider.of<PasswordCubit>(
-                    context,
-                  ).getVisibility(Passwordenum.signuppass),
-                );
-              },
+                  visibil: passvisible,
+               
+           
             ),
             SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
-            BlocBuilder<PasswordCubit, Map<Passwordenum, bool>>(
-              builder: (context, state) {
-                return Textfilecustom(
+            Textfilecustom(
                   onchange: (value) {},
                   preicon: Icons.lock,
                   title: "password config",
                   suficonneed: true,
                   controller: config,
-                  suficon: context.read<PasswordCubit>().getIcon(
-                    Passwordenum.configpass,
-                  ),
+                  suficon: configvisible != true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+
                   onpress: () {
-                    context.read<PasswordCubit>().changeVisibility(
-                      Passwordenum.configpass,
-                    );
+                   setState(() {
+                     configvisible = ! configvisible;
+                   });
                   },
-                  visibil: BlocProvider.of<PasswordCubit>(
-                    context,
-                  ).getVisibility(Passwordenum.configpass),
-                );
-              },
+                  visibil: configvisible,
             ),
+            
             SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

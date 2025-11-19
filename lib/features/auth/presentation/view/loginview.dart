@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_cubit_app/core/const/sized.dart';
-import 'package:my_cubit_app/core/style/appbuttonstyle.dart';
-import 'package:my_cubit_app/core/style/textstyle.dart';
-import 'package:my_cubit_app/core/widget/buttoncustom.dart';
-import 'package:my_cubit_app/features/auth/presentation/view/manager/password_cubit.dart';
+import '/core/const/sized.dart';
+import '/core/style/appbuttonstyle.dart';
+import '/core/style/textstyle.dart';
+import '/core/widget/buttoncustom.dart';
 
 import '../../../../core/widget/textfilecustom.dart';
 
@@ -22,7 +21,7 @@ class _LoginviewState extends State<Loginview> {
   TextEditingController email = TextEditingController();
 
   TextEditingController pass = TextEditingController();
-
+  bool isvisible = true;
   @override
   void dispose() {
     email.dispose();
@@ -57,28 +56,23 @@ class _LoginviewState extends State<Loginview> {
                 ),
                 SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
 
-                BlocBuilder<PasswordCubit, Map<Passwordenum, bool>>(
-                  builder: (context, state) {
-                    return Textfilecustom(
-                      onchange: (value) {},
-                      title: "Password",
-                      preicon: Icons.lock,
-                      controller: pass,
+                Textfilecustom(
+                  onchange: (value) {},
+                  title: "Password",
+                  preicon: Icons.lock,
+                  controller: pass,
 
-                      suficonneed: true,
-                      suficon: context.read<PasswordCubit>().getIcon(
-                        Passwordenum.loginpass,
-                      ),
-                      onpress: () {
-                        context.read<PasswordCubit>().changeVisibility(
-                          Passwordenum.loginpass,
-                        );
-                      },
-                      visibil: BlocProvider.of<PasswordCubit>(
-                        context,
-                      ).getVisibility(Passwordenum.loginpass),
-                    );
+                  suficonneed: true,
+                  suficon: isvisible != true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+
+                  onpress: () {
+                    setState(() {
+                      isvisible = !isvisible;
+                    });
                   },
+                  visibil: isvisible,
                 ),
 
                 SizedBox(height: Sizescreen().higthbetweenelementauth(context)),

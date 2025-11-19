@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_cubit_app/core/const/color.dart';
-import 'package:my_cubit_app/core/style/appbuttonstyle.dart';
-import 'package:my_cubit_app/core/style/textstyle.dart';
-import 'package:my_cubit_app/core/widget/buttoncustom.dart';
+import '/core/const/color.dart';
+import '/core/style/appbuttonstyle.dart';
+import '/core/style/textstyle.dart';
+import '/core/widget/buttoncustom.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../core/const/sized.dart';

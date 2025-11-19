@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_cubit_app/core/style/appbuttonstyle.dart';
-import 'package:my_cubit_app/core/style/textstyle.dart';
-import 'package:my_cubit_app/core/widget/buttoncustom.dart';
-import 'package:my_cubit_app/features/auth/presentation/view/manager/password_cubit.dart';
-
-import '../../../../core/const/sized.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/widget/textfilecustom.dart';
+import '/core/style/appbuttonstyle.dart';
+import '/core/style/textstyle.dart';
+import '/core/widget/buttoncustom.dart';
+import '../../../../core/const/sized.dart';
 
 class ResetpasswordView extends StatefulWidget {
   ResetpasswordView({super.key});
@@ -19,6 +17,7 @@ class _ResetpasswordViewState extends State<ResetpasswordView> {
   TextEditingController pass = TextEditingController();
 
   TextEditingController config = TextEditingController();
+  bool passvisible = true, configvisible = true;
   @override
   void dispose() {
     pass.dispose();
@@ -32,65 +31,55 @@ class _ResetpasswordViewState extends State<ResetpasswordView> {
       body: SingleChildScrollView(
         reverse: true,
         padding: EdgeInsets.only(top: Sizescreen().fullheight(context) / 3),
-        child: BlocBuilder<PasswordCubit, Map<Passwordenum, bool>>(
-          builder: (context, State) {
-            return Column(
-              children: [
-                Text("Reset password", style: TextstyleApp().titleauth),
-                SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
-                Text("Enter your new password to secure your account"),
-                SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
-                Builder(
-                  builder: (context) {
-                    return Textfilecustom(
-                      onchange: (value) {},
-                      preicon: Icons.lock,
-                      title: "password",
-                      suficonneed: true,
-                      suficon: BlocProvider.of<PasswordCubit>(
-                        context,
-                      ).getIcon(Passwordenum.resetpassword),
-                      controller: pass,
-                      onpress: () {
-                        BlocProvider.of<PasswordCubit>(
-                          context,
-                        ).changeVisibility(Passwordenum.resetconfig);
-                      },
-                      visibil: BlocProvider.of<PasswordCubit>(
-                        context,
-                      ).getVisibility(Passwordenum.resetpassword),
-                    );
-                  },
-                ),
-                SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
-                Textfilecustom(
-                  preicon: Icons.lock,
-                  title: "password config",
-                  suficonneed: true,
-                  onchange: (value) {},
-                  suficon: BlocProvider.of<PasswordCubit>(
-                    context,
-                  ).getIcon(Passwordenum.resetconfig),
-                  controller: config,
-                  onpress: () {
-                    BlocProvider.of<PasswordCubit>(
-                      context,
-                    ).changeVisibility(Passwordenum.resetconfig);
-                  },
-                  visibil: BlocProvider.of<PasswordCubit>(
-                    context,
-                  ).getVisibility(Passwordenum.resetconfig),
-                ),
-                SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
-                Buttoncustom(
-                  onpress: () {},
-                  title: "Reset",
-                  styletitlebutton: TextstyleApp().buttontexttitle,
-                  buttonstyle: Appbuttonstyle().authbutton(context),
-                ),
-              ],
-            );
-          },
+        child: Column(
+          children: [
+            Text("Reset password", style: TextstyleApp().titleauth),
+            SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
+            Text("Enter your new password to secure your account"),
+            SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
+            Textfilecustom(
+              onchange: (value) {},
+              preicon: Icons.lock,
+              title: "password",
+              suficonneed: true,
+              suficon: passvisible != true
+                  ? Icons.visibility
+                  : Icons.visibility_off,
+              controller: pass,
+              onpress: () {
+                setState(() {
+                  passvisible = !passvisible;
+                });
+              },
+              visibil: passvisible,
+            ),
+            SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
+            Textfilecustom(
+              preicon: Icons.lock,
+              title: "password config",
+              suficonneed: true,
+              onchange: (value) {},
+              suficon: configvisible != true
+                  ? Icons.visibility
+                  : Icons.visibility_off,
+              controller: config,
+              onpress: () {
+                setState(() {
+                  configvisible = !configvisible;
+                });
+              },
+              visibil: configvisible,
+            ),
+            SizedBox(height: Sizescreen().higthbetweenelementauth(context)),
+            Buttoncustom(
+              onpress: () {
+                context.goNamed("login");
+              },
+              title: "Reset",
+              styletitlebutton: TextstyleApp().buttontexttitle,
+              buttonstyle: Appbuttonstyle().authbutton(context),
+            ),
+          ],
         ),
       ),
     );

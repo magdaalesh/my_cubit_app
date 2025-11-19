@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_cubit_app/features/Nav/presentation/view/Nav.dart';
-import 'package:my_cubit_app/features/Sitting/presentation/view/SittingView.dart';
-import 'package:my_cubit_app/features/auth/presentation/view/Signupview.dart';
-import 'package:my_cubit_app/features/auth/presentation/view/forgotpasswordview.dart';
-import 'package:my_cubit_app/features/auth/presentation/view/loginview.dart';
-import 'package:my_cubit_app/features/auth/presentation/view/resetpasswordview.dart';
-import 'package:my_cubit_app/features/auth/presentation/view/verficationcodeview.dart';
-import 'package:my_cubit_app/features/home/presentation/view/homepageview.dart';
-import 'package:my_cubit_app/features/profile/presentation/view/profileview.dart';
+import '/features/Nav/presentation/view/Nav.dart';
+import '/features/Sitting/presentation/view/SittingView.dart';
+import '/features/Sitting/presentation/view/edit_profile.dart';
+import '/features/auth/presentation/view/Signupview.dart';
+import '/features/auth/presentation/view/forgotpasswordview.dart';
+import '/features/auth/presentation/view/loginview.dart';
+import '/features/auth/presentation/view/resetpasswordview.dart';
+import '/features/auth/presentation/view/verficationcodeview.dart';
+import '/features/home/presentation/view/homepageview.dart';
+import '/features/profile/presentation/view/profileview.dart';
+import '/features/Sitting/presentation/view/changepasswordview.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/',
@@ -40,7 +41,7 @@ final GoRouter router = GoRouter(
     ),
     StatefulShellRoute.indexedStack(
       branches: [
-         StatefulShellBranch(
+        StatefulShellBranch(
           routes: [
             GoRoute(
               path: "/Sitting",
@@ -59,8 +60,7 @@ final GoRouter router = GoRouter(
           ],
         ),
 
-      
-         StatefulShellBranch(
+        StatefulShellBranch(
           routes: [
             GoRoute(
               path: "/Profile",
@@ -72,6 +72,16 @@ final GoRouter router = GoRouter(
       ],
       builder: (context, state, navigationShell) =>
           Nav(navigationShell: navigationShell),
+    ),
+    GoRoute(
+      path: "/Editprofile",
+      name: "editprofile",
+      builder: (context, state) => EditProfile(),
+    ),
+    GoRoute(
+      path: "/changepassword",
+      name: "changepassword",
+      builder: (context, state) => Changepasswordview(),
     ),
   ],
 );

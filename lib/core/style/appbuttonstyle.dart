@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_cubit_app/core/const/color.dart';
+import '/core/const/color.dart';
 
 import '../const/sized.dart';
 
